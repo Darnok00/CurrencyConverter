@@ -3,7 +3,7 @@ import { amountProps } from "./types";
 import { useState } from "react";
 
 const Amount: React.FC<amountProps> = (props) => {
-  const [actualAmount, setActualAmount] = useState<Number>(0);
+  const [actualAmount, setActualAmount] = useState<Number>(props.defaultInputValue);
 
   return (
     <input

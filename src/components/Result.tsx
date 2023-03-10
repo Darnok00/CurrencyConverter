@@ -11,9 +11,9 @@ const Result: React.FC<resultProps> = (props) => {
   const codeFrom = props.fromCurrency.slice(0,3);
   const codeTo = props.toCurrency.slice(0,3);
   const rate = Number(code2mid[codeFrom])/Number(code2mid[codeTo])
-  const outputValue = Math.round(rate * Number(props.value) * 100)/100;
+  const outputValue = String(Math.round(rate * Number(props.value) * 100)/100);
 
-  return <label>{String(outputValue)}</label>;
+  return <label>{outputValue}</label>;
 };
 
 export default Result;
