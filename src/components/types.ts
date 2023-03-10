@@ -1,7 +1,7 @@
 export type currencyProps = {
-    currency: String;
-    code: String;
-    mid: Float32Array;
+    currency: string;
+    code: string;
+    mid: string;
 };
 
 export type selectProps = {
@@ -11,4 +11,11 @@ export type selectProps = {
 
 export type amountProps = {
     onChangeValue: Function;
+}
+
+export type resultProps = {
+    rates: Array<currencyProps>;
+    fromCurrency: string;
+    toCurrency: string;
+    value: Number;
 }

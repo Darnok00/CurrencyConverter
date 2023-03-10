@@ -1,14 +1,18 @@
-import React, { useEffect, useState, useId } from "react";
+import React, { useEffect, useState } from "react";
 import CurrencySelector from "./CurrencySelector";
 import Amount from "./Amount";
+import Result from "./Result";
 import { currencyProps, selectProps } from "./types";
 
 const CurrencyConverter: React.FC = () => {
   const [currencyArray, setCurrencyArray] = useState<currencyProps[]>([]);
-  const [fromCurrency, setFromCurrency] = useState<String>("USD - dolar amerykański");
-  const [toCurrency, setToCurrency] = useState<String>();
-  // strange error during typing as Number
-  const [inputValue, setInputValue] = useState<any>(0);
+  const [fromCurrency, setFromCurrency] = useState<string>(
+    "USD - dolar amerykański"
+  );
+  const [toCurrency, setToCurrency] = useState<string>(
+    "USD - dolar amerykański"
+  );
+  const [inputValue, setInputValue] = useState<Number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +23,9 @@ const CurrencyConverter: React.FC = () => {
         }
       );
       const jsonData = await data.json();
+      console.log(jsonData[0].rates);
+      jsonData[0].rates.push({ code: "PLN", currency: "złotówka", mid: "1" });
+      console.log(jsonData[0].rates);
       setCurrencyArray(jsonData[0].rates);
     };
 
@@ -29,15 +36,29 @@ const CurrencyConverter: React.FC = () => {
     <div>
       <CurrencySelector
         rates={currencyArray}
-        onChangeCureency={(actualCurrency: String) => {
+        onChangeCureency={(actualCurrency: string) => {
           setFromCurrency(actualCurrency);
         }}
       />
-      <Amount onChangeValue={(actualAmount: Number) => {
+      <CurrencySelector
+        rates={currencyArray}
+        onChangeCureency={(actualCurrency: string) => {
+          setToCurrency(actualCurrency);
+        }}
+      />
+
+      <Amount
+        onChangeValue={(actualAmount: Number) => {
           setInputValue(actualAmount);
-        }}/>
-      <p>{fromCurrency}</p>
-      <p>{inputValue}</p>
+        }}
+      />
+
+      <Result
+        value={inputValue}
+        fromCurrency={fromCurrency}
+        toCurrency={toCurrency}
+        rates={currencyArray}
+      />
     </div>
   );
 };
