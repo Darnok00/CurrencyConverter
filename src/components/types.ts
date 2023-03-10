@@ -8,3 +8,7 @@ export type selectProps = {
     rates: Array<currencyProps>;
     onChangeCureency: Function;
 };
+
+export type amountProps = {
+    onChangeValue: Function;
+}

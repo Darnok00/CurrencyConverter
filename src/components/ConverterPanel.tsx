@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useId } from "react";
 import CurrencySelector from "./CurrencySelector";
+import Amount from "./Amount";
 import { currencyProps, selectProps } from "./types";
 
 const CurrencyConverter: React.FC = () => {
   const [currencyArray, setCurrencyArray] = useState<currencyProps[]>([]);
-  const numberInputId = useId();
   const [fromCurrency, setFromCurrency] = useState<String>("USD - dolar amerykański");
   const [toCurrency, setToCurrency] = useState<String>();
+  // strange error during typing as Number
+  const [inputValue, setInputValue] = useState<any>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +33,11 @@ const CurrencyConverter: React.FC = () => {
           setFromCurrency(actualCurrency);
         }}
       />
+      <Amount onChangeValue={(actualAmount: Number) => {
+          setInputValue(actualAmount);
+        }}/>
       <p>{fromCurrency}</p>
+      <p>{inputValue}</p>
     </div>
   );
 };

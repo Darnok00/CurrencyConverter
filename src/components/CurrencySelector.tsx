@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { currencyProps, selectProps } from "./types";
+import { selectProps } from "./types";
 import Select from "react-select";
 
 const CurrencySelector: React.FC<selectProps> = (props) => {
