@@ -6,7 +6,7 @@ export type currencyProps = {
 
 export type selectProps = {
     rates: Array<currencyProps>;
-    onChangeCureency: Function;
+    onChangeCurency: Function;
     defaultCurrency: string;
 };
 

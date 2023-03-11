@@ -3,9 +3,55 @@ import CurrencySelector from "./CurrencySelector";
 import Amount from "./Amount";
 import Result from "./Result";
 import { currencyProps, selectProps } from "./types";
+import styled from "styled-components";
 
 const defaultInputValue = 1;
 const defaultCurrency = "PLN - złotówka";
+
+const MainContainer = styled.div`
+  background-color: #1a9edb;
+  padding: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 60rem;
+`;
+
+const InputContainer = styled.div`
+  width: 80%;
+  border: 0.2rem solid #b51618;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  background-color: #e6e8f0;
+  position: relative;
+`;
+
+const OutputContainer = styled(InputContainer)`
+  width: 30%;
+  height: 9rem;
+`;
+
+const AmountContainer = styled.div`
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: inline-block;
+  min-height: 6em;
+  width: 20%;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+`;
+
+const CurrencyContainer = styled(AmountContainer)`
+  width: 40%;
+`;
+
+const LabelText = styled.label`
+  font-weight: 700;
+`;
 
 const CurrencyConverter: React.FC = () => {
   const [currencyArray, setCurrencyArray] = useState<currencyProps[]>([]);
@@ -32,36 +78,50 @@ const CurrencyConverter: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <CurrencySelector
-        rates={currencyArray}
-        onChangeCureency={(actualCurrency: string) => {
-          setFromCurrency(actualCurrency);
-        }}
-        defaultCurrency={defaultCurrency}
-      />
-      <CurrencySelector
-        rates={currencyArray}
-        onChangeCureency={(actualCurrency: string) => {
-          setToCurrency(actualCurrency);
-        }}
-        defaultCurrency={defaultCurrency}
-      />
+    <MainContainer>
+      <InputContainer>
+        <AmountContainer>
+          <LabelText>Amount</LabelText>
+          <Amount
+            onChangeValue={(actualAmount: Number) => {
+              setInputValue(actualAmount);
+            }}
+            defaultInputValue={defaultInputValue}
+          />
+        </AmountContainer>
 
-      <Amount
-        onChangeValue={(actualAmount: Number) => {
-          setInputValue(actualAmount);
-        }}
-        defaultInputValue={defaultInputValue}
-      />
+        <CurrencyContainer>
+          <LabelText>From</LabelText>
+          <CurrencySelector
+            rates={currencyArray}
+            onChangeCurency={(actualCurrency: string) => {
+              setFromCurrency(actualCurrency);
+            }}
+            defaultCurrency={defaultCurrency}
+          />
+        </CurrencyContainer>
 
-      <Result
-        value={inputValue}
-        fromCurrency={fromCurrency}
-        toCurrency={toCurrency}
-        rates={currencyArray}
-      />
-    </div>
+        <CurrencyContainer>
+          <LabelText>To</LabelText>
+          <CurrencySelector
+            rates={currencyArray}
+            onChangeCurency={(actualCurrency: string) => {
+              setToCurrency(actualCurrency);
+            }}
+            defaultCurrency={defaultCurrency}
+          />
+        </CurrencyContainer>
+      </InputContainer>
+
+      <OutputContainer>
+        <Result
+          value={inputValue}
+          fromCurrency={fromCurrency}
+          toCurrency={toCurrency}
+          rates={currencyArray}
+        />
+      </OutputContainer>
+    </MainContainer>
   );
 };
 
