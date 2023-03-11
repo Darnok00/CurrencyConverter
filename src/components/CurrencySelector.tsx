@@ -1,4 +1,4 @@
-import { selectProps } from "./types";
+import { selectProps } from "../utils/types";
 import Select from "react-select";
 import styled from "styled-components";
 
@@ -7,7 +7,7 @@ const StyledSelect = styled(Select)`
   margin-top: 2%;
   border: solid 0.1rem #b51618;
   border-radius: 0.4rem;
-`
+`;
 
 const CurrencySelector: React.FC<selectProps> = (props) => {
   const nameCurrencyArray = props.rates
@@ -21,11 +21,13 @@ const CurrencySelector: React.FC<selectProps> = (props) => {
   );
 
   return (
-    <StyledSelect 
+    <StyledSelect
       options={optionsCurrency}
       // temporary any
-      onChange={(event: any) => props.onChangeCurency(event?.value)}
-      defaultValue={[{ value: props.defaultCurrency, label: props.defaultCurrency }][0]}
+      onChange={(event: any) => props.onChangeCurency((event?.value))}
+      defaultValue={
+        [{ value: props.defaultCurrency, label: props.defaultCurrency }][0]
+      }
     />
   );
 };

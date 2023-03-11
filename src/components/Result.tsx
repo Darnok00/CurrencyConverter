@@ -1,7 +1,7 @@
 import React from "react";
-import { resultProps, currencyProps } from "./types";
-import { useState } from "react";
+import { resultProps, currencyProps } from "../utils/types";
 import styled from "styled-components";
+import convertValue from "../logic/convertValue";
 
 const Container = styled.div`
   display: flex;
@@ -28,17 +28,9 @@ const LabelRate = styled(LabelStyled)`
 `;
 
 const Result: React.FC<resultProps> = (props) => {
-  const code2mid: Record<string, string> = {};
-  props.rates.forEach((currency: currencyProps) => {
-    code2mid[currency.code] = currency.mid;
-  });
-
-  const codeFrom = props.fromCurrency.slice(0, 3);
-  const codeTo = props.toCurrency.slice(0, 3);
-  const rate = Number(code2mid[codeFrom]) / Number(code2mid[codeTo]);
-  const outputValue = String(
-    Math.round(rate * Number(props.value) * 100) / 100
-  );
+  const convertResult = convertValue(props.value, props.fromCurrency, props.toCurrency, props.rates);
+  const outputValue = convertResult["outputValue"];
+  const rate = convertResult["rate"];
 
   return (
     <Container>
@@ -54,7 +46,7 @@ const Result: React.FC<resultProps> = (props) => {
         {"1 " +
           props.fromCurrency.slice(0, 3) +
           " = " +
-          Math.round(rate) +
+          Math.round(rate * 100) / 100 + " " +
           props.toCurrency.slice(0, 3)}
       </LabelRate>
 
@@ -62,7 +54,7 @@ const Result: React.FC<resultProps> = (props) => {
         {"1 " +
           props.toCurrency.slice(0, 3) +
           " = " +
-          Math.round(100 / rate) / 100 +
+          Math.round(100 / rate) / 100 + " " +
           props.fromCurrency.slice(0, 3)}
       </LabelRate>
     </Container>

@@ -1,5 +1,5 @@
 import React from "react";
-import { amountProps } from "./types";
+import { amountProps } from "../utils/types";
 import { useState } from "react";
 import styled from "styled-components";
 

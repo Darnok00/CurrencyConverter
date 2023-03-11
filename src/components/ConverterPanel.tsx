@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CurrencySelector from "./CurrencySelector";
 import Amount from "./Amount";
 import Result from "./Result";
-import { currencyProps, selectProps } from "./types";
+import { currencyProps, selectProps } from "../utils/types";
 import styled from "styled-components";
 
 const defaultInputValue = 1;
