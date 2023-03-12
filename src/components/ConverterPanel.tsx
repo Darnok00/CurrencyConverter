@@ -5,27 +5,38 @@ import Result from "./Result";
 import { currencyProps } from "../utils/types";
 import styled from "styled-components";
 
-const defaultInputValue = 1;
 const defaultCurrency = "PLN - złotówka";
 
 const MainContainer = styled.div`
-  background-color: #1a9edb;
+  background-image: linear-gradient(
+    164deg,
+    rgba(48, 71, 94, 1) 48%,
+    rgba(240, 84, 84, 1) 31%
+  );
   padding: 4.5rem;
   display: flex;
   flex-direction: column;
   height: 100vh;
 `;
 
+const Title = styled.p`
+  font-weight: 900;
+  font-size: 30px;
+  margin: 2rem;
+  color: #f5f5f5;
+`;
+
 const InputContainer = styled.div`
   width: 80%;
-  border: 0.2rem solid #b51618;
-  border-radius: 2rem;
+  border: 0.05rem solid;
+  border-radius: 0.5rem;
   margin-bottom: 2rem;
   padding: 2rem;
   display: flex;
   justify-content: center;
-  background-color: #e6e8f0;
+  background-color: #ffffff;
   position: relative;
+  box-shadow: 0px 0px 19px -1px rgba(59, 59, 59, 1);
 `;
 
 const OutputContainer = styled(InputContainer)`
@@ -57,7 +68,7 @@ const CurrencyConverter: React.FC = () => {
   const [currencyArray, setCurrencyArray] = useState<currencyProps[]>([]);
   const [fromCurrency, setFromCurrency] = useState<string>(defaultCurrency);
   const [toCurrency, setToCurrency] = useState<string>(defaultCurrency);
-  const [inputValue, setInputValue] = useState<Number>(defaultInputValue);
+  const [inputValue, setInputValue] = useState<Number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +90,8 @@ const CurrencyConverter: React.FC = () => {
 
   return (
     <MainContainer>
+      <Title>Przelicznik walut</Title>
+
       <InputContainer>
         <AmountContainer>
           <LabelText>Kwota</LabelText>
@@ -86,7 +99,6 @@ const CurrencyConverter: React.FC = () => {
             onChangeValue={(actualAmount: Number) => {
               setInputValue(actualAmount);
             }}
-            defaultInputValue={defaultInputValue}
           />
         </AmountContainer>
 

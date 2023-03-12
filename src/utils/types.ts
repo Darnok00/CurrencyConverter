@@ -12,7 +12,6 @@ export type selectProps = {
 
 export type amountProps = {
   onChangeValue: Function;
-  defaultInputValue: Number;
 };
 
 export type resultProps = {

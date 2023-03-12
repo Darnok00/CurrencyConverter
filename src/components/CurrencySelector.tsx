@@ -5,8 +5,7 @@ import styled from "styled-components";
 const StyledSelect = styled(Select)`
   width: 90%;
   margin-top: 2%;
-  border: solid 0.1rem #b51618;
-  border-radius: 0.4rem;
+  box-shadow: 0px 0px 25px -12px rgba(146, 146, 146, 1);
 `;
 
 const CurrencySelector: React.FC<selectProps> = (props) => {
@@ -23,7 +22,7 @@ const CurrencySelector: React.FC<selectProps> = (props) => {
   return (
     <StyledSelect
       options={optionsCurrency}
-      onChange={(event: any) => props.onChangeCurrency((event?.value))}
+      onChange={(event: any) => props.onChangeCurrency(event?.value)}
       defaultValue={
         [{ value: props.defaultCurrency, label: props.defaultCurrency }][0]
       }

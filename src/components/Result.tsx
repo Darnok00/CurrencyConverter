@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const LabelStyled = styled.label`
   font-weight: 700;
-  color: #b84042;
+  color: #f01a1a;
   margin-bottom: 0.5rem;
 `;
 
@@ -23,12 +23,17 @@ const LabelResult = styled(LabelStyled)`
 const LabelRate = styled(LabelStyled)`
   font-weight: 600;
   font-size: 80%;
-  color: #752a2b;
+  color: #30475e;
   margin: 0;
 `;
 
 const Result: React.FC<resultProps> = (props) => {
-  const convertResult = convertValue(props.value, props.fromCurrency, props.toCurrency, props.rates);
+  const convertResult = convertValue(
+    props.value,
+    props.fromCurrency,
+    props.toCurrency,
+    props.rates
+  );
   const outputValue = convertResult["outputValue"];
   const rate = convertResult["rate"];
 
@@ -46,7 +51,8 @@ const Result: React.FC<resultProps> = (props) => {
         {"1 " +
           props.fromCurrency.slice(0, 3) +
           " = " +
-          rate + " " +
+          rate +
+          " " +
           props.toCurrency.slice(0, 3)}
       </LabelRate>
 
@@ -54,7 +60,8 @@ const Result: React.FC<resultProps> = (props) => {
         {"1 " +
           props.toCurrency.slice(0, 3) +
           " = " +
-          Math.round(100 / rate) / 100 + " " +
+          Math.round(100 / rate) / 100 +
+          " " +
           props.fromCurrency.slice(0, 3)}
       </LabelRate>
     </Container>
