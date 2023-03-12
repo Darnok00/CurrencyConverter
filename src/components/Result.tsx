@@ -46,7 +46,7 @@ const Result: React.FC<resultProps> = (props) => {
         {"1 " +
           props.fromCurrency.slice(0, 3) +
           " = " +
-          Math.round(rate * 100) / 100 + " " +
+          rate + " " +
           props.toCurrency.slice(0, 3)}
       </LabelRate>
 

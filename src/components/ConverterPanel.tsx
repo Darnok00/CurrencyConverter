@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CurrencySelector from "./CurrencySelector";
 import Amount from "./Amount";
 import Result from "./Result";
-import { currencyProps, selectProps } from "../utils/types";
+import { currencyProps } from "../utils/types";
 import styled from "styled-components";
 
 const defaultInputValue = 1;
@@ -13,7 +13,7 @@ const MainContainer = styled.div`
   padding: 4.5rem;
   display: flex;
   flex-direction: column;
-  height: 60rem;
+  height: 100vh;
 `;
 
 const InputContainer = styled.div`
@@ -81,7 +81,7 @@ const CurrencyConverter: React.FC = () => {
     <MainContainer>
       <InputContainer>
         <AmountContainer>
-          <LabelText>Amount</LabelText>
+          <LabelText>Kwota</LabelText>
           <Amount
             onChangeValue={(actualAmount: Number) => {
               setInputValue(actualAmount);
@@ -91,10 +91,10 @@ const CurrencyConverter: React.FC = () => {
         </AmountContainer>
 
         <CurrencyContainer>
-          <LabelText>From</LabelText>
+          <LabelText>Waluta wejściowa</LabelText>
           <CurrencySelector
             rates={currencyArray}
-            onChangeCurency={(actualCurrency: string) => {
+            onChangeCurrency={(actualCurrency: string) => {
               setFromCurrency(actualCurrency);
             }}
             defaultCurrency={defaultCurrency}
@@ -102,10 +102,10 @@ const CurrencyConverter: React.FC = () => {
         </CurrencyContainer>
 
         <CurrencyContainer>
-          <LabelText>To</LabelText>
+          <LabelText>Waluta oczekiwana</LabelText>
           <CurrencySelector
             rates={currencyArray}
-            onChangeCurency={(actualCurrency: string) => {
+            onChangeCurrency={(actualCurrency: string) => {
               setToCurrency(actualCurrency);
             }}
             defaultCurrency={defaultCurrency}

@@ -16,7 +16,7 @@ function convertValue(
   const rate = Number(code2mid[codeFrom]) / Number(code2mid[codeTo]);
   const outputValue = String(Math.round(rate * Number(value) * 100) / 100);
 
-  return {"outputValue": outputValue, "rate": rate};
+  return {"outputValue": outputValue, "rate": Math.round(rate  * 100) / 100};
 }
 
 export default convertValue;

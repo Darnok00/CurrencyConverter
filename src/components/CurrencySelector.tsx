@@ -23,8 +23,7 @@ const CurrencySelector: React.FC<selectProps> = (props) => {
   return (
     <StyledSelect
       options={optionsCurrency}
-      // temporary any
-      onChange={(event: any) => props.onChangeCurency((event?.value))}
+      onChange={(event: any) => props.onChangeCurrency((event?.value))}
       defaultValue={
         [{ value: props.defaultCurrency, label: props.defaultCurrency }][0]
       }
