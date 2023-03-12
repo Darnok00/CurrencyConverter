@@ -22,6 +22,7 @@ const CurrencySelector: React.FC<selectProps> = (props) => {
   return (
     <StyledSelect
       options={optionsCurrency}
+      // The react-select wrapper in styled components causes typing issues
       onChange={(event: any) => props.onChangeCurrency(event?.value)}
       defaultValue={
         [{ value: props.defaultCurrency, label: props.defaultCurrency }][0]

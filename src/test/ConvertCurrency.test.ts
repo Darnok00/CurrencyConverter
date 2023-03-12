@@ -11,7 +11,7 @@ describe("Convert currency tests", () => {
     { currency: "złotówka", code: "PLN", mid: "1" },
   ];
 
-  test("Rate value PLN - JPY.", () => {
+  test("Rate value PLN - JPY with input 1.", () => {
     const result = convertValue(
       1,
       "PLN - złotówka",
@@ -55,7 +55,29 @@ describe("Convert currency tests", () => {
     expect(result).toEqual(expectedValue);
   });
 
-  test("Rate value USD - JPY with input as float.", () => {
+  test("Convert USD - HKD with integer input.", () => {
+    const result = convertValue(
+      140,
+      "USD - dolar amerykański",
+      "HKD - dolar Hongkongu",
+      currencyArray
+    )["outputValue"];
+    const expectedValue = "1099";
+    expect(result).toEqual(expectedValue);
+  });
+
+  test("Convert value TRY - EUR with input as float.", () => {
+    const result = convertValue(
+      15362.34,
+      "TRY - lira turecka",
+      "EUR - euro",
+      currencyArray
+    )["outputValue"];
+    const expectedValue = "765.53";
+    expect(result).toEqual(expectedValue);
+  });
+
+  test("Convert value USD - JPY with input as float.", () => {
     const result = convertValue(
       0.34,
       "USD - dolar amerykański",
