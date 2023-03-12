@@ -17,6 +17,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  box-sizing: border-box;
 `;
 
 const Title = styled.p`
