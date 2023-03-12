@@ -6,7 +6,7 @@
 
  ## Data
 
- The application fetches data using the exchange rate from the web API http://api.nbp.pl/.
+ The application fetches data from the web API http://api.nbp.pl/.
 
  ## Used technologies
 
@@ -18,7 +18,7 @@
 
  ## How to run the code
 
- If You want to run the code locally, You need to install dependencies via `yarn install` or `npm install`. There are several commands availiable:
+ You need to install dependencies via `yarn install` or `npm install`. There are several commands availiable:
 
  - `npm run dev`
  - `npm run test`
