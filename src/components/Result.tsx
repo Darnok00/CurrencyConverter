@@ -1,5 +1,5 @@
 import React from "react";
-import { resultProps, currencyProps } from "../utils/types";
+import { resultProps, currencyProps } from "../types/types";
 import styled from "styled-components";
 import convertValue from "../logic/convertValue";
 

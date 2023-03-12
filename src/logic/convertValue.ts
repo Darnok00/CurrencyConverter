@@ -1,4 +1,4 @@
-import { resultProps, currencyProps } from "../utils/types";
+import { resultProps, currencyProps } from "../types/types";
 
 function convertValue(
   value: Number,

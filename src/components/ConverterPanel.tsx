@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CurrencySelector from "./CurrencySelector";
 import Amount from "./Amount";
 import Result from "./Result";
-import { currencyProps } from "../utils/types";
+import { currencyProps } from "../types/types";
 import styled from "styled-components";
 
 const defaultCurrency = "PLN - złotówka";
